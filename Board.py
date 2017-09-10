@@ -3,8 +3,8 @@ class Board:
 
     def __init__(self):
         ''' The constructor initialises the board with empty positions
-        which are represented here by the numeric value of -1. '''
+        which are represented here by the character '_' (underscore). '''
 
-        self.board = [[-1, -1, -1],
-                      [-1, -1, -1],
-                      [-1, -1, -1]]
+        self.board = [['_', '_', '_'],
+                      ['_', '_', '_'],
+                      ['_', '_', '_']]
