@@ -33,6 +33,11 @@ class Game:
             print('Enter position to mark (0 based indexing): ')
             row, col = [int(i) for i in input().split()]
 
+            # Check if the entered row and col are valid or not
+            if row < 0 or row > 2 or col < 0 or col > 2:
+                print('Entered position is invalid')
+                continue
+
             # Check if the position entered is vacant or not
             if self.board.board[row][col] != '_':
                 print('Entered position is already occupied, try again!')
