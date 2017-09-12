@@ -111,7 +111,7 @@ class Game:
             return 0
 
         if player1_turn is True:
-            ''' This block tries to maximize the score. '''
+            ''' This block tries to maximize the score relative to player1. '''
 
             best = -1000
             for i, row in enumerate(board.board):
@@ -123,7 +123,7 @@ class Game:
 
             return best
         else:
-            ''' This block tries to minimize the score. '''
+            ''' This block tries to minimize the score relative to player1. '''
 
             best = 1000
             for i, row in enumerate(board.board):
@@ -150,13 +150,14 @@ class Game:
                 if char == '_':
 
                     board.set_mark(i, j, self.player1.marker)
+
+                    # player1 made it's move, so next move should be player2's.
                     move_score = self.minimax(board, 0, False)
                     board.remove_mark(i, j)
 
                     if move_score > best_score:
                         best_score = move_score
-                        best_move[0] = i
-                        best_move[1] = j
+                        best_move = [i, j]
 
         return best_move
 
