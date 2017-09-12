@@ -13,22 +13,26 @@ class Board:
         for row in self.board:
             print(row[0], row[1], row[2])
 
+    def set_mark(self, row, col, mark):
+        ''' This method sets a mark on position (row, col) on the board. '''
+        self.board[row][col] = mark
+
+    def remove_mark(self, row, col):
+        ''' This method empties the position (row, col) on the board. '''
+        self.board[row][col] = '_'
+
     def is_full(self):
         ''' This method checks if there is any vacant position left on the
         board or not.  If there is any vacant position left, it returns True,
         else it returns False.
         '''
 
-        full = True
         for row in self.board:
             for position in row:
                 if position == '_':
-                    full = False
-                    break
-            if full is False:
-                break
+                    return False
 
-        return full
+        return True
 
     def winning_position(self):
         ''' This method checks if the board is in winning position.
@@ -62,3 +66,21 @@ class Board:
 
         # The board is not in a winning position, so return None
         return None
+
+    def score(self):
+        ''' This method evaluates the current setup on the board.
+        It returns +10 if the board is in a winning position for
+        player1 and -10 if the board is in a winning position for
+        player2.  If the board is not in a winning position for any
+        player, then it returns 0.
+        '''
+
+        winner = self.winning_position()
+
+        if winner is not None:
+            if winner == 'x':
+                return 10
+            else:
+                return -10
+        else:
+            return 0
